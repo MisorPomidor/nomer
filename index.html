@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Номер телефону</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0d0d0f;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      width: calc(100% - 32px);
+      max-width: 520px;
+      padding: 48px 28px;
+      text-align: center;
+      background: #17171b;
+      border: 1px solid #29292f;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .title {
+      margin-bottom: 12px;
+      font-size: 18px;
+      color: #96969f;
+    }
+
+    .phone {
+      display: block;
+      margin-bottom: 28px;
+      font-size: clamp(28px, 7vw, 42px);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px 22px;
+      border: 0;
+      border-radius: 14px;
+      background: #ffffff;
+      color: #111111;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      background: #e8e8e8;
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .status {
+      height: 20px;
+      margin-top: 16px;
+      color: #7ee787;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="title">Номер телефону</div>
+    <div class="phone">+380 97 821 5712</div>
+    <button id="copyButton">Скопіювати номер</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    const phone = "+380978215712";
+    const button = document.getElementById("copyButton");
+    const status = document.getElementById("status");
+
+    button.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(phone);
+      status.textContent = "Номер скопійовано";
+      button.textContent = "Скопійовано ✓";
+
+      setTimeout(() => {
+        status.textContent = "";
+        button.textContent = "Скопіювати номер";
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
